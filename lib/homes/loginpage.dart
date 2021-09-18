@@ -25,14 +25,14 @@ import 'package:flutter_firebase/homes/user_main.dart';
             if(error.code == 'user-not-found') {
                 print("user not found for this email");
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    backgroundColor: Colors.blueGrey,
-                    content: Text("user not found for this email",style: TextStyle(fontSize: 18.0,color: Colors.blueGrey),),
+                    backgroundColor: Colors.red,
+                    content: Text("No registered for this email",style: TextStyle(fontSize: 14.0,color: Colors.white,fontFamily: "Ubuntu-Medium"),),
                 ),);
             }else if(error.code == 'wrong-password') {
                   print("Wrong password provider by this user");
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    backgroundColor: Colors.blueGrey,
-                    content: Text("Wrong password provider by this user",style: TextStyle(fontSize: 18.0,color: Colors.blueGrey),),
+                    backgroundColor: Colors.red,
+                    content: Text("Wrong password provider by this user",style: TextStyle(fontSize: 14.0,color: Colors.white,fontFamily: "Ubuntu-Medium"),),
                   ),);
             }
       }
@@ -68,7 +68,7 @@ import 'package:flutter_firebase/homes/user_main.dart';
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    errorStyle: TextStyle(color: Colors.blueGrey,fontSize: 15.0),
+                                    errorStyle: TextStyle(color: Colors.red,fontSize: 15.0),
                                   ),
                               controller: emailController,
                               validator:(value){
@@ -114,6 +114,7 @@ import 'package:flutter_firebase/homes/user_main.dart';
                                           password = passwordController.text;
                                       });
                                       userLogin();
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserMain(),),);
                                     },
                                         child: Text('Login',style: TextStyle(fontSize: 16.0,fontFamily: "Ubuntu-Medium"),)
                                     ),

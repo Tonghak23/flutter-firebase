@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/homes/loginpage.dart';
 import 'package:flutter_firebase/homes/signup_account.dart';
+import 'package:flutter_firebase/homes/user_main.dart';
 
   void main() {
       WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,7 @@ import 'package:flutter_firebase/homes/signup_account.dart';
                       debugShowCheckedModeBanner: false,
                       title:"Flutter firebase",
                       theme: ThemeData(primarySwatch: Colors.blueGrey),
-                      home: LoginPage(),
+                      home: LoginPage (),
                  );
           },
         );

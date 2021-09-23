@@ -3,23 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase/homes/forgot_pass.dart';
 import 'package:flutter_firebase/homes/signup_account.dart';
 import 'package:flutter_firebase/homes/user_main.dart';
-
   class LoginPage extends StatefulWidget {
-    const LoginPage({Key? key}) : super(key: key);
-  
+
     @override
     _LoginPageState createState() => _LoginPageState();
   }
   
   class _LoginPageState extends State<LoginPage> {
     final _formkey=GlobalKey<FormState>();
-    var email ="";
-    var password="";
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+    var _email ="";
+    var _password="";
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
     userLogin() async {
         try{
-            await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+            await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>UserMain()));
         }on FirebaseAuthException catch(error){
             if(error.code == 'user-not-found') {
@@ -41,8 +39,8 @@ import 'package:flutter_firebase/homes/user_main.dart';
     @override
   void dispose() {
     super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
   }
 
   @override
@@ -70,7 +68,7 @@ import 'package:flutter_firebase/homes/user_main.dart';
                                     ),
                                     errorStyle: TextStyle(color: Colors.red,fontSize: 15.0),
                                   ),
-                              controller: emailController,
+                              controller: _emailController,
                               validator:(value){
                                     if(value==null || value.isEmpty) {
                                         return 'Please enter email';
@@ -94,10 +92,10 @@ import 'package:flutter_firebase/homes/user_main.dart';
                                 ),
                               errorStyle: TextStyle(color: Colors.blueGrey,fontSize: 15.0),
                             ),
-                            controller: passwordController,
+                            controller: _passwordController,
                             validator:(value){
                               if(value==null || value.isEmpty) {
-                                return 'Please enter password';
+                                return "Please enter password";
                               }
                               return null;
                             },
@@ -110,11 +108,10 @@ import 'package:flutter_firebase/homes/user_main.dart';
                                 children: [
                                     ElevatedButton(onPressed: (){
                                       setState(() {
-                                          email = emailController.text;
-                                          password = passwordController.text;
+                                          _email = _emailController.text;
+                                          _password = _passwordController.text;
                                       });
                                       userLogin();
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserMain(),),);
                                     },
                                         child: Text('Login',style: TextStyle(fontSize: 16.0,fontFamily: "Ubuntu-Medium"),)
                                     ),

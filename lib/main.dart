@@ -25,7 +25,7 @@ import 'package:flutter_firebase/homes/user_main.dart';
                       debugShowCheckedModeBanner: false,
                       title:"Flutter firebase",
                       theme: ThemeData(primarySwatch: Colors.blueGrey),
-                      home: LoginPage (),
+                      home: LoginPage(),
                  );
           },
         );
